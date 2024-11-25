@@ -50,6 +50,11 @@ public class TurnManager : MonoBehaviour
         ChangePlayer();
     }
 
+    public void Update()
+    {
+        _currentPlayer.ExecuteTurnActions();
+    }
+
     private void ChangePlayer()
     {
         if(_currentPlayer == _players[0])

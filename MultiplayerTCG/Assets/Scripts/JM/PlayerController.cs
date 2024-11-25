@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] Deck playerDeck;
     [SerializeField] Hand hand;
+    [SerializeField] PlayerMouseReader mouseReader;
 
     bool isMyTurn;
 
@@ -21,7 +22,9 @@ public class PlayerController : MonoBehaviour
     public void StartTurn()
     {
         isMyTurn = true;
+        
         DrawCard();
+        hand.SetHandCardsUsability(isMyTurn);
     }
 
     public void DrawCard()
@@ -40,9 +43,10 @@ public class PlayerController : MonoBehaviour
     public void FinishTurn()
     {
         isMyTurn = false;
+        hand.SetHandCardsUsability(isMyTurn);
     }
 
-    private void Update()
+    public void ExecuteTurnActions()
     {
         if (!isMyTurn)
             return;

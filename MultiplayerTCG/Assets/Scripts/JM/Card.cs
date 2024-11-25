@@ -7,27 +7,28 @@ public class Card : MonoBehaviour
 {
     CardData _data;
 
+    bool _canUse;
+
     [SerializeField] SpriteRenderer _spriteRenderer;
 
     public void InicializeCard(CardData data)
     {
+
         _data = data;
-
-        Debug.Log(_data.effect);
-
         _spriteRenderer.sprite = _data.cardArt;
+        Debug.Log(_data.effect);
     }
 
-    public void Update()
+    public void SetUsability(bool usability)
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            UseCard();
-        }
+        _canUse = usability;
     }
 
     public void UseCard()
     {
+        if (!_canUse)
+            return;
+
         Debug.Log(_data.effect);
         Destroy(gameObject);
     }
