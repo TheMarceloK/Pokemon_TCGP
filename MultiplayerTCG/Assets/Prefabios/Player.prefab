@@ -55,6 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1880310876644838807}
   - component: {fileID: 2084680464845973353}
+  - component: {fileID: 2396570929993181350}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -91,8 +92,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5009110daf4fd4385c24a24c33297c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDeck: {fileID: 214477229124708324}
-  hand: {fileID: 6144039748732146385}
+  _playerDeck: {fileID: 214477229124708324}
+  _hand: {fileID: 6144039748732146385}
+--- !u!114 &2396570929993181350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281272118821307725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20118163711098942b7271498cdeed3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 2084680464845973353}
+  cardLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1458678253829857613
 PrefabInstance:
   m_ObjectHideFlags: 0

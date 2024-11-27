@@ -4,32 +4,35 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] Deck playerDeck;
-    [SerializeField] Hand hand;
-    [SerializeField] PlayerMouseReader mouseReader;
+    [SerializeField] Deck _playerDeck;
+    [SerializeField] Hand _hand;
+    
 
-    bool isMyTurn;
+    bool _isMyTurn;
 
     public delegate void OnPlayerFinishTurn();
     public static OnPlayerFinishTurn onPlayerFinishTurn;
 
 
+    public bool IsMyTurn => _isMyTurn;
+
+
     public void StartGame()
     {
-        playerDeck.StartGame();
+        _playerDeck.StartGame();
     }
 
     public void StartTurn()
     {
-        isMyTurn = true;
+        _isMyTurn = true;
         
         DrawCard();
-        hand.SetHandCardsUsability(isMyTurn);
+        _hand.SetHandCardsUsability(_isMyTurn);
     }
 
     public void DrawCard()
     {
-        playerDeck.DrawCard(out CardData card);
+        _playerDeck.DrawCard(out CardData card);
 
         if(card == null)
         {
@@ -37,18 +40,18 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        hand.AddCard(card);
+        _hand.AddCard(card);
     }
 
     public void FinishTurn()
     {
-        isMyTurn = false;
-        hand.SetHandCardsUsability(isMyTurn);
+        _isMyTurn = false;
+        _hand.SetHandCardsUsability(_isMyTurn);
     }
 
     public void ExecuteTurnActions()
     {
-        if (!isMyTurn)
+        if (!_isMyTurn)
             return;
 
         if (Input.GetKeyDown(KeyCode.Space))
