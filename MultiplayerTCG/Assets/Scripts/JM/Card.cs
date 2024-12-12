@@ -13,7 +13,6 @@ public class Card : MonoBehaviour
 
     public void InicializeCard(CardData data)
     {
-
         _data = data;
         _spriteRenderer.sprite = _data.cardArt;
         Debug.Log(_data.effect);
