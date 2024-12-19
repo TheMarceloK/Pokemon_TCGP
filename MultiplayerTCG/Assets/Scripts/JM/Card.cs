@@ -28,6 +28,11 @@ public class Card : MonoBehaviour
         if (!_canUse)
             return;
 
+        if (_data.pokemonID >= 0)
+        {
+            
+        }
+
         Debug.Log(_data.effect);
         Destroy(gameObject);
     }

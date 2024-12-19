@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] Deck _playerDeck;
     [SerializeField] Hand _hand;
-    
+    [SerializeField] BoardManager _board;
+
 
     bool _isMyTurn;
 
@@ -58,5 +59,7 @@ public class PlayerController : MonoBehaviour
         {
             onPlayerFinishTurn?.Invoke();
         }
+
+        
     }
 }
