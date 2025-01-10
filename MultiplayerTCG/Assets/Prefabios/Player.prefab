@@ -54,6 +54,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 273137926278781852}
+  - component: {fileID: 7004695904719454467}
   m_Layer: 0
   m_Name: BanchC
   m_TagString: Untagged
@@ -76,6 +77,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1955963090326059274}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7004695904719454467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5032232048353297496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e5645757cd4284b9b67871a6aae1f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6341144445381992165
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,6 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4654858768339593149}
+  - component: {fileID: 2433493818054000165}
   m_Layer: 0
   m_Name: BanchB
   m_TagString: Untagged
@@ -107,6 +121,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1955963090326059274}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2433493818054000165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6341144445381992165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e5645757cd4284b9b67871a6aae1f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6851582895431786849
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,6 +142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8145860653943010271}
+  - component: {fileID: 1365641987078826765}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -140,6 +167,23 @@ Transform:
   - {fileID: 1955963090326059274}
   m_Father: {fileID: 1880310876644838807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1365641987078826765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6851582895431786849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43020d10a0b61f544a99a8dcbc07c52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots:
+  - {fileID: 8596634799140306655}
+  - {fileID: 4432689237061198630}
+  - {fileID: 2433493818054000165}
+  - {fileID: 7004695904719454467}
 --- !u!1 &7281272118821307725
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerDeck: {fileID: 214477229124708324}
   _hand: {fileID: 6144039748732146385}
+  _board: {fileID: 0}
 --- !u!114 &2396570929993181350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +250,7 @@ MonoBehaviour:
   controller: {fileID: 2084680464845973353}
   cardLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!1 &8103049069397640413
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8942750643798817271}
+  - component: {fileID: 4432689237061198630}
   m_Layer: 0
   m_Name: BanchA
   m_TagString: Untagged
@@ -271,6 +317,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1955963090326059274}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4432689237061198630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8231680650131668215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e5645757cd4284b9b67871a6aae1f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9042682484617393333
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,6 +338,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6592002552882254219}
+  - component: {fileID: 8596634799140306655}
   m_Layer: 0
   m_Name: Active
   m_TagString: Untagged
@@ -302,6 +361,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8145860653943010271}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8596634799140306655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9042682484617393333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec42b99e1389ad4b8dde7542d307bd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1458678253829857613
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -58,8 +58,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             onPlayerFinishTurn?.Invoke();
-        }
-
-        
+        }   
     }
 }

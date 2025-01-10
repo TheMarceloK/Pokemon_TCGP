@@ -19,9 +19,12 @@ public class PlayerMouseReader : MonoBehaviour
     private void GenerateRaycast()
     {
         Transform cameraTransform = Camera.main.transform;
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, 15f, cardLayerMask))
+        if (Physics.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), cameraTransform.forward, out RaycastHit hit, 15f, cardLayerMask))
         {
-
+            if(hit.collider.TryGetComponent(out Card card))
+            {
+                card.UseCard();
+            }
         }
     }
 }

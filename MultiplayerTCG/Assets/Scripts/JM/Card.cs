@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Card : MonoBehaviour
 {
     CardData _data;
@@ -15,7 +14,6 @@ public class Card : MonoBehaviour
     {
         _data = data;
         _spriteRenderer.sprite = _data.cardArt;
-        Debug.Log(_data.effect);
     }
 
     public void SetUsability(bool usability)
@@ -23,18 +21,21 @@ public class Card : MonoBehaviour
         _canUse = usability;
     }
 
+    private void Update()
+    {
+        
+    }
+
     public void UseCard()
     {
         if (!_canUse)
             return;
 
-        if (_data.pokemonID >= 0)
+        if (_data.pokemonData != null)
         {
             
         }
 
-        Debug.Log(_data.effect);
         Destroy(gameObject);
     }
-
 }

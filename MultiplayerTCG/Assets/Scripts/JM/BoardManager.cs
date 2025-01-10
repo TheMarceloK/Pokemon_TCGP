@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] BoardSlot[] slots;
+
+    private void Start()
     {
-        
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].SetSlotID(i);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ReciveAttack(int damage)
     {
-        
+        slots[0].PokemonTakeDamage(damage);
     }
+
+    public void ReciveAttack(int damage,int slotToHit)
+    {
+        slots[slotToHit].PokemonTakeDamage(damage);
+    }
+
 }
