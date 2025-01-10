@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6660893437381683470}
   - component: {fileID: 4810850030506908255}
   - component: {fileID: 9073184346195208666}
-  m_Layer: 10
-  m_Name: Card
+  m_Layer: 0
+  m_Name: PokemonCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
