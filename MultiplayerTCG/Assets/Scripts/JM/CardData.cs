@@ -8,6 +8,8 @@ public class CardData : ScriptableObject
     public int ID;
     public Sprite cardArt;
 
+    public PokemonData pokemonData;
+
     //CardData todos tem
 
     //Os tipos diferentes vem dos outros tipos de Data como PokemonData e ItensData
