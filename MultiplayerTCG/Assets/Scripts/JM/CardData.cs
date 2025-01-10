@@ -16,5 +16,5 @@ public class CardData : ScriptableObject
 
     //Assim as cartas enquanto na mão e no deck não fazem nada, por serem apenas CardData
 
-    //Mas quando jogadas elas ganham a forma do tipo quardado 
+    //Mas quando jogadas elas ganham a forma do tipo quardado
 }
