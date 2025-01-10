@@ -31,7 +31,7 @@ public class Card : MonoBehaviour
         if (!_canUse)
             return;
 
-        if (_data.pokemonData != null)
+        if (_data.GetType() == new PokemonData().GetType())
         {
             
         }

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Card/Pokemon")]
-public class PokemonData : ScriptableObject
+public class PokemonData : CardData
 {
-    public int ID;
     public GameObject pokemonPrefab;
     public int maxLife;
 }
