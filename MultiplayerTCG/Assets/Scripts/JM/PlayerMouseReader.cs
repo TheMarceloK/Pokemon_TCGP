@@ -8,6 +8,8 @@ public class PlayerMouseReader : MonoBehaviour
     [SerializeField] PlayerController controller;
     [SerializeField] LayerMask cardLayerMask;
 
+    Card lastCard;
+
     private void Update()
     {
         if (GenerateRaycast(out Card cardHit))
@@ -18,7 +20,11 @@ public class PlayerMouseReader : MonoBehaviour
             }
             CardHolvered(cardHit);
         }
-        
+
+        if(lastCard != null)
+            CardUnHolver(cardHit);
+
+        lastCard = cardHit;
     }
 
     public void CardClicked(Card cardClicked)
@@ -29,10 +35,20 @@ public class PlayerMouseReader : MonoBehaviour
 
     public void CardHolvered(Card cardHolvered)
     {
-
+        cardHolvered.ShowHolveredImage(true);
     }
 
-    private bool GenerateRaycast(out Card cardHit)
+    public void CardUnHolver(Card cardHolvered)
+    {
+        if (cardHolvered != lastCard)
+        {
+            lastCard.ShowHolveredImage(false);
+        }
+    }
+
+    
+
+private bool GenerateRaycast(out Card cardHit)
     {
         cardHit = null;
         Transform cameraTransform = Camera.main.transform;

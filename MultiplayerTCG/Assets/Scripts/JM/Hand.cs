@@ -33,7 +33,7 @@ public class Hand : MonoBehaviour
     {
         for (int i = 0; i < handCards.Count; i++)
         {
-            handCards[i].transform.position = transform.position + new Vector3(i, 0, 0.1f * i);
+            handCards[i].transform.position = transform.position + new Vector3(i * 1.5f, 0, 0.1f * i);
         }
     }
 
