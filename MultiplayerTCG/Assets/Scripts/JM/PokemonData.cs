@@ -6,5 +6,6 @@ using UnityEngine;
 public class PokemonData : CardData
 {
     public GameObject pokemonPrefab;
+    public string pokemonName;
     public int maxLife;
 }

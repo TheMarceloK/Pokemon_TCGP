@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
         _hand.SetHandCardsUsability(_isMyTurn);
     }
 
+    public void CardUsedFromHand(Card cardUsed)
+    {
+        _hand.RemoveCard(cardUsed);
+    }
+
     public void ExecuteTurnActions()
     {
         if (!_isMyTurn)

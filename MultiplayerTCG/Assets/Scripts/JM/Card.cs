@@ -31,9 +31,13 @@ public class Card : MonoBehaviour
         if (!_canUse)
             return;
 
-        if (_data.GetType() == new PokemonData().GetType())
+        Debug.Log(_data.ID);
+
+        if (_data.GetType() == ScriptableObject.CreateInstance<PokemonData>().GetType())
         {
-            
+            PokemonData pokemon = (PokemonData) _data;
+
+            Debug.Log(pokemon.pokemonName);
         }
 
         Destroy(gameObject);

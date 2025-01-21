@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bfef14201e41c245b1bbdf52b288389, type: 3}
-  m_Name: PokemonOne
+  m_Script: {fileID: 11500000, guid: cce2eeea68fa76848ab8df8fa7aeef9d, type: 3}
+  m_Name: Charmander
   m_EditorClassIdentifier: 
   ID: 7
   cardArt: {fileID: 21300000, guid: 06ece990629a0ba4982256ea58226471, type: 3}
-  effect: 
-  isPokemon: 1
+  pokemonPrefab: {fileID: 0}
+  maxLife: 0
