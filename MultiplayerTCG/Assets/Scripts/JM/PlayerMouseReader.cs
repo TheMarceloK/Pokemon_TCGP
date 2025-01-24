@@ -30,7 +30,6 @@ public class PlayerMouseReader : MonoBehaviour
     public void CardClicked(Card cardClicked)
     {
         controller.CardUsedFromHand(cardClicked);
-        cardClicked.UseCard();
     }
 
     public void CardHolvered(Card cardHolvered)

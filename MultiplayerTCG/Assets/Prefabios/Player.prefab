@@ -234,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerDeck: {fileID: 214477229124708324}
   _hand: {fileID: 6144039748732146385}
-  _board: {fileID: 0}
+  _board: {fileID: 1365641987078826765}
 --- !u!114 &2396570929993181350
 MonoBehaviour:
   m_ObjectHideFlags: 0

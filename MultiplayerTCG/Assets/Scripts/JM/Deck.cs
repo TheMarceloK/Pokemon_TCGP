@@ -36,7 +36,7 @@ public class Deck : MonoBehaviour
         int cardSelected;
 
         //Use only when using Shuffle(). Card pick is always from the top 
-        cardSelected = 0;
+        //cardSelected = 0;
 
         //Does not need to Shuffle(). Card pick does not follow deck order
         cardSelected = UnityEngine.Random.Range(0, cards.Count);

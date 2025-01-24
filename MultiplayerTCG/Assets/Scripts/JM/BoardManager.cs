@@ -14,14 +14,29 @@ public class BoardManager : MonoBehaviour
         }
     }
 
+    public void PlayPokemon(PokemonData data, out bool isPokemonPlayed)
+    {
+        isPokemonPlayed = false;
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].CanAddPokemon(data.IDNeededToEvolve))
+            {
+                slots[i].AddPokemonToSlot(data);
+                isPokemonPlayed=true;
+                return;
+            }
+        }
+    }
+
     public void ReciveAttack(int damage)
     {
-        slots[0].PokemonTakeDamage(damage);
+        slots[0].PokemonTakeDamage(damage, out bool pokemonDied);
     }
 
     public void ReciveAttack(int damage,int slotToHit)
     {
-        slots[slotToHit].PokemonTakeDamage(damage);
+        slots[slotToHit].PokemonTakeDamage(damage, out bool pokemonDied);
     }
 
 }

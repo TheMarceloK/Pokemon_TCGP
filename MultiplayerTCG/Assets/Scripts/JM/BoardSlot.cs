@@ -14,8 +14,10 @@ public class BoardSlot : MonoBehaviour
     {
         CurrentPokemonData = pokemonData;
 
-        GameObject newPokemon = Instantiate(CurrentPokemonData.pokemonPrefab, transform);
+        GameObject newPokemon = Instantiate(CurrentPokemonData.PokemonPrefab, transform);
         CurrentPokemonInSlot = newPokemon.GetComponent<PokemonScrpt>();
+
+        CurrentPokemonInSlot.Inicialize(pokemonData);
     }
 
     public void AddPokemonToSlot(PokemonData pokemonData, PokemonScrpt existingPokemon)
@@ -27,9 +29,23 @@ public class BoardSlot : MonoBehaviour
         CurrentPokemonInSlot.transform.SetParent(transform);
     }
 
-    public void PokemonTakeDamage(int amountOfDamage)
+    public bool CanAddPokemon()
+    {
+        return CurrentPokemonInSlot == null;
+    }
+
+    public bool CanAddPokemon(int evolutionID)
+    {
+        if (evolutionID == 0)
+            return CanAddPokemon();
+
+        return CurrentPokemonData.PokemonID == evolutionID;
+    }
+
+    public void PokemonTakeDamage(int amountOfDamage, out bool pokemonDied)
     {
         CurrentPokemonInSlot.TakeDamage(amountOfDamage, out bool died);
+        pokemonDied = died;
     }
 
     public void SetSlotID(int id)

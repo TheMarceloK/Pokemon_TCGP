@@ -6,6 +6,8 @@ public class Card : MonoBehaviour
 {
     CardData _data;
 
+    public CardData Data => _data; 
+
     bool _canUse;
 
     [SerializeField] SpriteRenderer _spriteRenderer;
@@ -34,18 +36,5 @@ public class Card : MonoBehaviour
         
     }
 
-    public void UseCard()
-    {
-        if (!_canUse)
-            return;
-
-        if (_data.GetType() == ScriptableObject.CreateInstance<PokemonData>().GetType())
-        {
-            PokemonData pokemon = (PokemonData) _data;
-
-            Debug.Log(pokemon.pokemonName);
-        }
-
-        Destroy(gameObject);
-    }
+    
 }

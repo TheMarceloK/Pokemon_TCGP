@@ -23,9 +23,11 @@ public class Hand : MonoBehaviour
         ArrangeCards();
     }
 
-    public void RemoveCard(Card cardToRemove)
+    public void RemoveCardFromHand(Card cardToRemove)
     {
         handCards.Remove(cardToRemove);
+        Destroy(cardToRemove.gameObject);
+
         ArrangeCards();
     }
 

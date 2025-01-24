@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsMyTurn => _isMyTurn;
 
+    #region TurnStuff
 
     public void StartGame()
     {
@@ -50,11 +51,6 @@ public class PlayerController : MonoBehaviour
         _hand.SetHandCardsUsability(_isMyTurn);
     }
 
-    public void CardUsedFromHand(Card cardUsed)
-    {
-        _hand.RemoveCard(cardUsed);
-    }
-
     public void ExecuteTurnActions()
     {
         if (!_isMyTurn)
@@ -63,6 +59,37 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             onPlayerFinishTurn?.Invoke();
-        }   
+        }
+    }
+
+    #endregion
+
+    public void CardUsedFromHand(Card cardUsed)
+    {
+        if (!IsMyTurn)
+            return;
+
+        
+        UseCard(cardUsed.Data, out bool isCardPlayed);
+
+
+        if (isCardPlayed)
+        {
+            _hand.RemoveCardFromHand(cardUsed);
+            
+        }
+    }
+
+    public void UseCard(CardData data, out bool isCardPlayed)
+    {
+        isCardPlayed = false;
+
+        if (data.GetType() == ScriptableObject.CreateInstance<PokemonData>().GetType())
+        {
+            PokemonData pokemon = (PokemonData)data;
+
+            _board.PlayPokemon(pokemon, out bool isPokemonPlayed);
+            isCardPlayed = isPokemonPlayed;
+        }
     }
 }
