@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         _isMyTurn = true;
         _energyUsed = false;
+        _attacked = false;
         
         DrawCard();
         _hand.SetHandCardsUsability(_isMyTurn);
