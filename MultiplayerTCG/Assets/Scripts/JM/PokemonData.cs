@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Card/Pokemon")]
 public class PokemonData : CardData
 {
-    public GameObject pokemonPrefab;
-    public int maxLife;
+    public GameObject PokemonPrefab;
+    public int PokemonID;
+    public int MaxLife;
+    public string AttackName;
+    public int AttackDamage;
+    public int AttackCost;
 }
