@@ -2,11 +2,13 @@
 
 
 using System;
+using System.Data;
 using System.Text;
 using System.Data.SqlClient;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 using UnityEngine;
-
+// using System.Md5;
 public class NewConnectDB
 {
     public SqlParameter par;
@@ -33,4 +35,22 @@ public class NewConnectDB
         }
         return null;
     }
+
+
+    public static string HashMd5(string input){
+        MD5 md5Hash = MD5.Create();
+
+        byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+        StringBuilder sBuilder = new StringBuilder();
+
+        for (int i = 0; i < data.Length; i++)
+        {
+            sBuilder.Append(data[i].ToString("x2"));
+        }
+
+        return sBuilder.ToString();
+
+    }
+
 }

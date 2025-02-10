@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class TipoController : NewConnectDB
 {
-    public int inserir(Tipo tipo)
+    public void inserir(Tipo tipo)
     {
         String sql = "INSERT INTO TIPO (NOME) " +
             "VALUES (@NOME) SELECT SCOPE_IDENTITY()";
@@ -18,9 +18,6 @@ public class TipoController : NewConnectDB
 
         reader = cmd.ExecuteReader();
 
-        reader.Read();
-        String pk = reader.GetValue(0).ToString();
-        return Int32.Parse(pk);
     }
 
     public void alterar(Tipo tipo)
