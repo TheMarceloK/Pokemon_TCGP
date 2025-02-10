@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class ActiveBoardSlot : BoardSlot
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Attack()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

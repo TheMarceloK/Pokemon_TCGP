@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4495835358693380691}
   - component: {fileID: 1158564315161140901}
   - component: {fileID: 3149500394372175619}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,10 +88,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3522783829441815912}
-  - component: {fileID: 4810850030506908255}
-  - component: {fileID: 9073184346195208666}
   - component: {fileID: 7160237997062834035}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: PokemonPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,54 +113,6 @@ Transform:
   - {fileID: 9220532891369704040}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4810850030506908255
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3766092281475477859}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.3, y: 3.3, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &9073184346195208666
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3766092281475477859}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!114 &7160237997062834035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 418996514613568929}
+  _lifeText: {fileID: 3149500394372175619}
 --- !u!1 &5473746975426907865
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9220532891369704040}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +171,7 @@ GameObject:
   - component: {fileID: 8978130476353234539}
   - component: {fileID: 243223792075263382}
   - component: {fileID: 3918402220328749398}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +273,7 @@ GameObject:
   - component: {fileID: 6556168582265498445}
   - component: {fileID: 5961112971698538334}
   - component: {fileID: 2581543670259201022}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}

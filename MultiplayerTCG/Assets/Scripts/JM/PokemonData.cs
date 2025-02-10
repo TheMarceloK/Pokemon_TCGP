@@ -8,6 +8,7 @@ public class PokemonData : CardData
     public GameObject PokemonPrefab;
     public int PokemonID;
     public int MaxLife;
-    public int IDNeededToEvolve;
-
+    public string AttackName;
+    public int AttackDamage;
+    public int AttackCost;
 }

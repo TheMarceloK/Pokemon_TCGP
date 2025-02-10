@@ -20,7 +20,7 @@ public class BoardManager : MonoBehaviour
 
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i].CanAddPokemon(data.IDNeededToEvolve))
+            if (slots[i].IsSlotEmpty())
             {
                 slots[i].AddPokemonToSlot(data);
                 isPokemonPlayed=true;

@@ -10,7 +10,12 @@ public class PokemonScrpt : MonoBehaviour
     [SerializeField] Text _lifeText;
 
     PokemonData _data;
+
+    public PokemonData Data => _data;
     int damageTaken;
+
+    int energy;
+    public int Energy => energy;
 
     // Start is called before the first frame update
     public void Inicialize(PokemonData data)
@@ -18,6 +23,7 @@ public class PokemonScrpt : MonoBehaviour
         _data = data;
         damageTaken = 0;
         _spriteRenderer.sprite = _data.cardArt;
+        UpdateLifeText();
     }
 
     public void TakeDamage(int amountOfDamage, out bool died)
@@ -25,7 +31,7 @@ public class PokemonScrpt : MonoBehaviour
         died = false;
         damageTaken += amountOfDamage;
         UpdateLifeText();
-        if(damageTaken > _data.MaxLife)
+        if(damageTaken >= _data.MaxLife)
         {
             died = true;
             Faint();
@@ -40,5 +46,10 @@ public class PokemonScrpt : MonoBehaviour
     private void Faint()
     {
         Destroy(gameObject);
+    }
+
+    public void AddEnergy()
+    {
+        energy++;
     }
 }

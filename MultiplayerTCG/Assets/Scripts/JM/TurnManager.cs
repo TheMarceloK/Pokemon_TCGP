@@ -8,7 +8,7 @@ public class TurnManager : MonoBehaviour
 {
 
     [SerializeField] PlayerSpawner spawner;
-    PlayerController[] _players;
+    public PlayerController[] _players;
 
     PlayerController _currentPlayer;
 
@@ -19,8 +19,8 @@ public class TurnManager : MonoBehaviour
         _players[0] = spawner.PlayerA;
         _players[1] = spawner.PlayerB;
 
-        _players[0].StartGame();
-        _players[1].StartGame();
+        _players[0].StartGame(_players[1]);
+        _players[1].StartGame(_players[0]);
 
         _currentPlayer = _players[Random.Range(0,2)];
 

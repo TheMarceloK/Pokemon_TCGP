@@ -21,6 +21,7 @@ public class Hand : MonoBehaviour
         handCards.Add(newCardScrpt);
 
         ArrangeCards();
+        numOfCards++;
     }
 
     public void RemoveCardFromHand(Card cardToRemove)
@@ -28,12 +29,14 @@ public class Hand : MonoBehaviour
         handCards.Remove(cardToRemove);
         Destroy(cardToRemove.gameObject);
 
+        numOfCards--;
+
         ArrangeCards();
     }
 
     public void ArrangeCards()
     {
-        for (int i = 0; i < handCards.Count; i++)
+        for (int i = 0; i < numOfCards; i++)
         {
             handCards[i].transform.position = transform.position + new Vector3(i * 1.5f, 0, 0.1f * i);
         }

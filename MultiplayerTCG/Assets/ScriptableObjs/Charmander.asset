@@ -18,4 +18,6 @@ MonoBehaviour:
   PokemonPrefab: {fileID: 3766092281475477859, guid: f4738d9db9c0edf4dbf140fe454710c7, type: 3}
   PokemonID: 0
   MaxLife: 5
-  IDNeededToEvolve: 0
+  AttackName: 
+  AttackDamage: 1
+  AttackCost: 2

@@ -8,8 +8,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Hand _hand;
     [SerializeField] BoardManager _board;
 
+    public PlayerController _enemyPlayer;
 
     bool _isMyTurn;
+    bool _energyUsed;
+    bool _attacked;
 
     public delegate void OnPlayerFinishTurn();
     public static OnPlayerFinishTurn onPlayerFinishTurn;
@@ -19,14 +22,18 @@ public class PlayerController : MonoBehaviour
 
     #region TurnStuff
 
-    public void StartGame()
+    public void StartGame(PlayerController enemyPlayer)
     {
+        _enemyPlayer = enemyPlayer;
         _playerDeck.StartGame();
+        _energyUsed = false;
+        _attacked = false;
     }
 
     public void StartTurn()
     {
         _isMyTurn = true;
+        _energyUsed = false;
         
         DrawCard();
         _hand.SetHandCardsUsability(_isMyTurn);
@@ -64,19 +71,19 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    #region Cards
+
     public void CardUsedFromHand(Card cardUsed)
     {
         if (!IsMyTurn)
             return;
 
-        
         UseCard(cardUsed.Data, out bool isCardPlayed);
 
 
         if (isCardPlayed)
         {
             _hand.RemoveCardFromHand(cardUsed);
-            
         }
     }
 
@@ -92,4 +99,33 @@ public class PlayerController : MonoBehaviour
             isCardPlayed = isPokemonPlayed;
         }
     }
+    #endregion
+
+    #region Slots
+
+    public void ReciveAttack(int damage) { 
+        _board.ReciveAttack(damage);
+    }
+
+    public void SlotClicked(BoardSlot slotClicked)
+    {
+        if (slotClicked.IsSlotEmpty())
+            return;
+
+        if (!_energyUsed)
+        {
+            slotClicked.AddEnergy(out bool energyAddedSuccessfuly);
+            _energyUsed = energyAddedSuccessfuly;
+            return;
+        }
+
+        if(!_attacked && slotClicked.IsActiveSlot(out int damage) && slotClicked.HasEnergyToAttack()){
+            
+            _enemyPlayer.ReciveAttack(damage);
+            _attacked = true;
+        }
+
+    }
+
+    #endregion
 }
