@@ -6,6 +6,8 @@ public class BoardManager : MonoBehaviour
 {
     [SerializeField] BoardSlot[] slots;
 
+    public BoardSlot[] Slots => slots;
+
     private void Start()
     {
         for (int i = 0; i < slots.Length; i++)
@@ -14,15 +16,17 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    public void PlayPokemon(PokemonData data, out bool isPokemonPlayed)
+    public void PlayPokemon(PokemonData data, out bool isPokemonPlayed, out int boardID)
     {
         isPokemonPlayed = false;
+        boardID = -1;
 
         for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i].IsSlotEmpty())
             {
                 slots[i].AddPokemonToSlot(data);
+                boardID = i;
                 isPokemonPlayed=true;
                 return;
             }
@@ -38,5 +42,7 @@ public class BoardManager : MonoBehaviour
     {
         slots[slotToHit].PokemonTakeDamage(damage, out bool pokemonDied);
     }
+
+
 
 }

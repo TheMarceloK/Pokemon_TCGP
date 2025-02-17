@@ -8,20 +8,17 @@ public class Hand : MonoBehaviour
 
     List<Card> handCards = new List<Card>();
 
-    int numOfCards;
-
     public void AddCard(CardData cardToAdd)
     {
         GameObject newCard = Instantiate(cardPrefab,transform.position, transform.rotation);
-
+        
         Card newCardScrpt = newCard.GetComponent<Card>();
 
         newCardScrpt.InicializeCard(cardToAdd);
-
+        
         handCards.Add(newCardScrpt);
 
         ArrangeCards();
-        numOfCards++;
     }
 
     public void RemoveCardFromHand(Card cardToRemove)
@@ -29,14 +26,12 @@ public class Hand : MonoBehaviour
         handCards.Remove(cardToRemove);
         Destroy(cardToRemove.gameObject);
 
-        numOfCards--;
-
         ArrangeCards();
     }
 
     public void ArrangeCards()
     {
-        for (int i = 0; i < numOfCards; i++)
+        for (int i = 0; i < handCards.Count; i++)
         {
             handCards[i].transform.position = transform.position + new Vector3(i * 1.5f, 0, 0.1f * i);
         }

@@ -19,6 +19,5 @@ public class ItemController : NewConnectDB
         cmd.Parameters.Add(par);
         
         reader = cmd.ExecuteReader();
-
     }
 }

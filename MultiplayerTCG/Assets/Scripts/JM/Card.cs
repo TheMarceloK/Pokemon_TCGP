@@ -29,12 +29,5 @@ public class Card : MonoBehaviour
     {
         _spriteRenderer.gameObject.SetActive(!holvered);
         _spriteHolvered.gameObject.SetActive(holvered);
-    }
-
-    private void Update()
-    {
-        
-    }
-
-    
+    }    
 }

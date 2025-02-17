@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
@@ -9,17 +10,29 @@ public class Client : MonoBehaviour
     private NetworkStream stream;
     private string playerId;
 
+    private MensagerReceptor mensagerReceptor;
+
+    Queue<string> messageQueue = new Queue<string>();
+
     void Start()
     {
         client = new TcpClient();
         client.BeginConnect("127.0.0.1", 7777, new AsyncCallback(OnConnect), null);
+
+        mensagerReceptor = GetComponent<MensagerReceptor>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) // Exemplo de ação do jogador
+        lock (messageQueue)
         {
-            SendMessageToServer($"{playerId} fez uma jogada!");
+            while (messageQueue.Count > 0)
+            {
+                string message = messageQueue.Dequeue();
+                mensagerReceptor = FindObjectOfType<MensagerReceptor>();
+
+                mensagerReceptor.ReciveMensage(message);
+            }
         }
     }
 
@@ -34,7 +47,7 @@ public class Client : MonoBehaviour
         }
     }
 
-    void SendMessageToServer(string message)
+    public void SendMessageToServer(string message)
     {
         if (client.Connected)
         {
@@ -45,6 +58,7 @@ public class Client : MonoBehaviour
 
     void OnDataReceived(IAsyncResult ar)
     {
+        
         byte[] buffer = (byte[])ar.AsyncState;
         int bytesRead = stream.EndRead(ar);
         string response = Encoding.ASCII.GetString(buffer, 0, bytesRead);
@@ -52,13 +66,10 @@ public class Client : MonoBehaviour
         {
             Debug.Log("Received from server: " + response);
         }
-        
 
-        // identificação mensagem do jogador
-        if (response == "Player 1" || response == "Player 2")
+        lock (messageQueue)
         {
-            playerId = response;
-            Debug.Log("Player ID set to: " + playerId);
+            messageQueue.Enqueue(response);
         }
 
         // Continuar lendo dados do servidor

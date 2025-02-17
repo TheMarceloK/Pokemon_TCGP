@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,7 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Hand _hand;
     [SerializeField] BoardManager _board;
 
-    public PlayerController _enemyPlayer;
+    [SerializeField] EnemyBoard _enemyBoard;
+
+    [SerializeField] MensagerSender _mensagerSender;
 
     bool _isMyTurn;
     bool _energyUsed;
@@ -17,14 +21,12 @@ public class PlayerController : MonoBehaviour
     public delegate void OnPlayerFinishTurn();
     public static OnPlayerFinishTurn onPlayerFinishTurn;
 
-
     public bool IsMyTurn => _isMyTurn;
 
     #region TurnStuff
 
-    public void StartGame(PlayerController enemyPlayer)
+    public void SetUpPlayer()
     {
-        _enemyPlayer = enemyPlayer;
         _playerDeck.StartGame();
         _energyUsed = false;
         _attacked = false;
@@ -35,26 +37,26 @@ public class PlayerController : MonoBehaviour
         _isMyTurn = true;
         _energyUsed = false;
         _attacked = false;
-        
         DrawCard();
+        
         _hand.SetHandCardsUsability(_isMyTurn);
     }
 
     public void DrawCard()
     {
         _playerDeck.DrawCard(out CardData card);
-
-        if(card == null)
+        
+        if (card == null)
         {
-            Debug.Log("Acabou as cartas");
             return;
         }
-
+        
         _hand.AddCard(card);
     }
 
     public void FinishTurn()
     {
+        
         _isMyTurn = false;
         _hand.SetHandCardsUsability(_isMyTurn);
     }
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             onPlayerFinishTurn?.Invoke();
+            _mensagerSender.SendMensageToServer("FinishTurn");
         }
     }
 
@@ -79,24 +82,33 @@ public class PlayerController : MonoBehaviour
         if (!IsMyTurn)
             return;
 
-        UseCard(cardUsed.Data, out bool isCardPlayed);
+        UseCard(cardUsed.Data, out bool isCardPlayed, out int boardID);
 
 
         if (isCardPlayed)
         {
+            Debug.Log("Pokemon " + cardUsed.Data.cardName + " played");
+
+            _mensagerSender.SendMensageToServer("PlayedCard:" + boardID + ","+ 0);
+
             _hand.RemoveCardFromHand(cardUsed);
+
         }
     }
 
-    public void UseCard(CardData data, out bool isCardPlayed)
+    public void UseCard(CardData data, out bool isCardPlayed, out int OboardID)
     {
         isCardPlayed = false;
+        OboardID = -1;
 
         if (data.GetType() == ScriptableObject.CreateInstance<PokemonData>().GetType())
         {
             PokemonData pokemon = (PokemonData)data;
 
-            _board.PlayPokemon(pokemon, out bool isPokemonPlayed);
+            _board.PlayPokemon(pokemon, out bool isPokemonPlayed, out int boardID);
+
+            OboardID = boardID;
+
             isCardPlayed = isPokemonPlayed;
         }
     }
@@ -104,8 +116,10 @@ public class PlayerController : MonoBehaviour
 
     #region Slots
 
-    public void ReciveAttack(int damage) { 
+    public void ReciveAttack(int damage) {
         _board.ReciveAttack(damage);
+        _mensagerSender.SendMensageToServer("UpdateLife:" + 0 + "," + _board.Slots[0].HowMuchLife());
+
     }
 
     public void SlotClicked(BoardSlot slotClicked)
@@ -116,17 +130,31 @@ public class PlayerController : MonoBehaviour
         if (!_energyUsed)
         {
             slotClicked.AddEnergy(out bool energyAddedSuccessfuly);
+            _mensagerSender.SendMensageToServer("EnergyAdded:" + slotClicked.SlotID + "," + slotClicked.HowMuckEnergy());
             _energyUsed = energyAddedSuccessfuly;
             return;
         }
 
         if(!_attacked && slotClicked.IsActiveSlot(out int damage) && slotClicked.HasEnergyToAttack()){
-            
-            _enemyPlayer.ReciveAttack(damage);
+            _mensagerSender.SendMensageToServer("ReciveAttack:"+damage);
             _attacked = true;
         }
-
     }
 
     #endregion
+
+    public void PutPokemonOnEnemyBoard(int[] i)
+    {
+        _enemyBoard.PutPokemon(i[0], i[1]);
+    }
+    public void EnemyAddedEnergy(int[] i)
+    {
+        _enemyBoard.SetEnergy(i[0], i[1]);
+    }
+
+    public void EnemyPokemonChangedLife(int[] i)
+    {
+        _enemyBoard.SetLife(i[0], i[1]);
+    }
+    
 }

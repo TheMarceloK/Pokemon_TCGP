@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Server : MonoBehaviour
 {
@@ -27,13 +28,17 @@ public class Server : MonoBehaviour
         {
             player1 = client;
             Debug.Log("Player 1 connected");
-            SendMessageToClient(player1, "Player 1");
+            //SendMessageToClient(player1, "Player 1");
+
+            
         }
         else if (player2 == null)
         {
             player2 = client;
             Debug.Log("Player 2 connected");
-            SendMessageToClient(player2, "Player 2");
+            //SendMessageToClient(player2, "Player 2");
+
+            StartGame();
         }
 
         // Continuar aceitando mais clientes
@@ -43,6 +48,22 @@ public class Server : MonoBehaviour
         NetworkStream stream = client.GetStream();
         byte[] buffer = new byte[1024];
         stream.BeginRead(buffer, 0, buffer.Length, new AsyncCallback(OnDataReceived), new { client, buffer });
+    }
+
+    private void StartGame()
+    {
+        int coinFlip = Random.Range(0,2);
+        
+        if (coinFlip == 0)
+        {
+            SendMessageToClient(player1, "StartTurn:0");
+            SendMessageToClient(player2, "StartTurn:1");
+        }
+        else
+        {
+            SendMessageToClient(player1, "StartTurn:1");
+            SendMessageToClient(player2, "StartTurn:0");
+        }
     }
 
     void OnDataReceived(IAsyncResult ar)
@@ -57,12 +78,13 @@ public class Server : MonoBehaviour
         
 
         if (message != ""){
-            Debug.Log("Received from client: " + message);
+            Debug.Log("Sending message to " + client + ": " + message);
         }
 
         // Enviar a mensagem para o outro jogador
         if (client == player1 && player2 != null)
         {
+            
             SendMessageToClient(player2, message);
         }
         else if (client == player2 && player1 != null)

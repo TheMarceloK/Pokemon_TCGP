@@ -13,7 +13,7 @@ public class BoardSlot : MonoBehaviour
     [SerializeField] GameObject energyCanvas;
     
 
-    int SlotID;
+    public int SlotID;
 
     void UpdateTextEnergy()
     {
@@ -25,6 +25,16 @@ public class BoardSlot : MonoBehaviour
 
     }
 
+    public int HowMuckEnergy()
+    {
+        return CurrentPokemonInSlot.Energy;
+    }
+
+    public int HowMuchLife()
+    {
+        return CurrentPokemonInSlot.CurrentLife;
+    }
+
     public void AddPokemonToSlot(PokemonData pokemonData)
     {
         CurrentPokemonData = pokemonData;
@@ -34,8 +44,6 @@ public class BoardSlot : MonoBehaviour
 
         CurrentPokemonInSlot.Inicialize(pokemonData);
         UpdateTextEnergy();
-
-
     }
 
     public void AddPokemonToSlot(PokemonData pokemonData, PokemonScrpt existingPokemon)

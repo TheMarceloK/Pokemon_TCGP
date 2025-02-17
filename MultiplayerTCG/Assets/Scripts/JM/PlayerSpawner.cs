@@ -5,22 +5,16 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviour
 {
     [SerializeField] GameObject _playerPrefab;
-    [SerializeField] Transform postionA, positionB;
+    [SerializeField] Transform postion;
 
-    public PlayerController PlayerA, PlayerB;
+    public PlayerController Player;
 
     private void Awake()
     {
-        GameObject newPlayer = Instantiate(_playerPrefab, postionA.position, postionA.rotation);
+        GameObject newPlayer = Instantiate(_playerPrefab, postion.position, postion.rotation);
 
         newPlayer.name = "Player A";
 
-        PlayerA = newPlayer.GetComponent<PlayerController>();
-
-        newPlayer = Instantiate(_playerPrefab, positionB.position, positionB.rotation);
-
-        newPlayer.name = "Player B";
-
-        PlayerB = newPlayer.GetComponent<PlayerController>();
+        Player = newPlayer.GetComponent<PlayerController>();
     }
 }

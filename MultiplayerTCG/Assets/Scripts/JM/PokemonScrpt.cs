@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PokemonScrpt : MonoBehaviour
 {
     [SerializeField] SpriteRenderer _spriteRenderer;
-    [SerializeField] Text _lifeText;
+    [SerializeField] Text _lifeText, _cardNameTxt;
 
     PokemonData _data;
 
@@ -16,6 +16,7 @@ public class PokemonScrpt : MonoBehaviour
 
     int energy;
     public int Energy => energy;
+    public int CurrentLife => _data.MaxLife - damageTaken;
 
     // Start is called before the first frame update
     public void Inicialize(PokemonData data)
@@ -23,6 +24,7 @@ public class PokemonScrpt : MonoBehaviour
         _data = data;
         damageTaken = 0;
         _spriteRenderer.sprite = _data.cardArt;
+        _cardNameTxt.text = _data.cardName;
         UpdateLifeText();
     }
 

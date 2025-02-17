@@ -7,61 +7,41 @@ using Random = UnityEngine.Random;
 public class TurnManager : MonoBehaviour
 {
 
-    [SerializeField] PlayerSpawner spawner;
-    public PlayerController[] _players;
-
-    PlayerController _currentPlayer;
-
-    private void Start()
-    {
-        _players = new PlayerController[2];
-
-        _players[0] = spawner.PlayerA;
-        _players[1] = spawner.PlayerB;
-
-        _players[0].StartGame(_players[1]);
-        _players[1].StartGame(_players[0]);
-
-        _currentPlayer = _players[Random.Range(0,2)];
-
-        StartTurn();
-    }
+    public PlayerController _player;
 
     private void OnEnable()
     {
-        PlayerController.onPlayerFinishTurn += FinishTurn;
+        PlayerController.onPlayerFinishTurn += ChangePlayer;
     }
-
     private void OnDisable()
     {
-        PlayerController.onPlayerFinishTurn -= FinishTurn;
+        PlayerController.onPlayerFinishTurn -= ChangePlayer;
     }
 
-    public void StartTurn()
+    private void Start()
     {
-        Debug.Log("Turno de " + _currentPlayer.gameObject.name);
-        _currentPlayer.StartTurn();
+        _player.SetUpPlayer();
     }
 
-    public void FinishTurn()
+    public void StartGame(bool iStart)
     {
-        Debug.Log("Terminou " + _currentPlayer.gameObject.name);
-        _currentPlayer.FinishTurn();
-        ChangePlayer();
+        if(iStart)
+            _player.StartTurn();
+        else
+            _player.FinishTurn();
     }
+
 
     public void Update()
     {
-        _currentPlayer.ExecuteTurnActions();
+        _player.ExecuteTurnActions();
     }
 
-    private void ChangePlayer()
+    public void ChangePlayer()
     {
-        if(_currentPlayer == _players[0])
-            _currentPlayer = _players[1];
+        if (_player.IsMyTurn)
+            _player.FinishTurn();
         else
-            _currentPlayer = _players[0];
-
-        Invoke("StartTurn", 1f);
+            _player.StartTurn();
     }
 }
