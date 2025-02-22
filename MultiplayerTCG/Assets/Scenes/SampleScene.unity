@@ -755,7 +755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &483347921
 Transform:
   m_ObjectHideFlags: 0
@@ -3944,7 +3944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1915592349
 Transform:
   m_ObjectHideFlags: 0
@@ -4334,6 +4334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyQuantity: {fileID: 4516168459853678116}
   energyCanvas: {fileID: 4350415629550632222}
+  SlotID: 0
 --- !u!65 &669000399268377308
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4622,6 +4623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyQuantity: {fileID: 2567963602713967942}
   energyCanvas: {fileID: 2400521904280503932}
+  SlotID: 0
 --- !u!222 &1600059359406557830
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4968,6 +4970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyQuantity: {fileID: 1350429862192989015}
   energyCanvas: {fileID: 1175105734088407149}
+  SlotID: 0
 --- !u!222 &2822068146314523799
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5042,6 +5045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyQuantity: {fileID: 1826436297591913488}
   energyCanvas: {fileID: 1993879247916271402}
+  SlotID: 0
 --- !u!54 &3488276587928998135
 Rigidbody:
   m_ObjectHideFlags: 0

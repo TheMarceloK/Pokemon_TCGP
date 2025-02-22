@@ -26,7 +26,7 @@ public class Deck : MonoBehaviour
     public void StartGame()
     {
         
-        //ReciveDataFromDB();
+        ReciveDataFromDB();
         
         foreach (CardData card in unshuffledCards)
         {
